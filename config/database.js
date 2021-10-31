@@ -10,5 +10,3 @@ module.exports =  new db('user_database', 'postgres', 'postgres', {
     idle:1000
   }
 })
-
-

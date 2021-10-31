@@ -26,5 +26,8 @@
     "pino": "^7.0.5",
     "sequelize": "^6.8.0",
     "shortid": "^2.2.16"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.2.0"
   }
 }

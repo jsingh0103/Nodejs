@@ -11,7 +11,7 @@ const fs = require('fs')
 var path = require("path");
 
 
-const UserModel = require('./../models/User')
+const UserModel = require("./../../models/").users
 
 let signUpFunction = (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200')
@@ -65,8 +65,7 @@ let signUpFunction = (req, res) => {
                          last_name: req.body.last_name,
                          user_email: req.body.user_email,
                          user_age: req.body.user_age,
-                         user_password: passwordLib.hashpassword(req.body.user_password),
-                         avatar: ""
+                         user_password: passwordLib.hashpassword(req.body.user_password)
                      }
                      UserModel.create(user_data).
                          then((data) => {
