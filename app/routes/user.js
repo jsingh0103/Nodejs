@@ -15,5 +15,7 @@ module.exports.setRouter = (app)=>{
     app.post(baseUrl + "/signup",fileUpload.upload.single('avatar'),userController.signUpFunction)
 
     app.post(baseUrl + "/login",userController.loginFunction)
+    
+    app.post(baseUrl + "/uploadcsv",userController.uploadFile)
 }
 

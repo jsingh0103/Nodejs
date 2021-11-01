@@ -5,7 +5,6 @@ const passwordLib = require('./../libs/generatePasswordLib');
 const validateInput = require('./../libs/paramsValidationLib')
 const check = require('./../libs/checkLib')
 const mailer = require('./../libs/mailerLib')
-const db = require('./../../config/database')
 const shortid = require('shortid')
 const fs = require('fs')
 var path = require("path");
@@ -239,10 +238,41 @@ let editUser = (req,res)=>{
         res.send("error occoured.")
     })
 }
+let uploadFile = async (req,res)=>{
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200') 
+        try
+        {
+          const records= req.body;
+
+          if(records.length>0)
+          {
+             await  UserModel.bulkCreate(records)
+             .then(() => {
+               res.status(200).send({
+                 message:
+                   "Uploaded the file records successfully !!"});         
+             })      
+             .catch((error) => {
+               res.status(500).send({
+                 message: "Fail to import data into database!",
+                 error: error.message,
+               });
+             });
+            } 
+        }
+        catch (error) {
+          console.log(error);
+          res.status(500).send({
+            message: "Could not upload the file:"
+          });
+        }
+    }
+
 module.exports ={
     signUpFunction: signUpFunction,
     loginFunction: loginFunction,
     getParticularUser: getParticularUser,
     editUser: editUser,
+    uploadFile: uploadFile
     // uploadAvatar: uploadAvatar
 }

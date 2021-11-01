@@ -4,7 +4,6 @@ const app = express()
 const appConfig = require('./config/appConfig')
 const fs = require('fs')
 const globalErrorMiddleware = require('./app/middlewares/appErrorHandler')
-const sequelize = require('./config/database')
 const cookieParser = require('cookie-parser')
 const methodOverride = require("method-override")
 const cors = require('cors')
@@ -37,12 +36,6 @@ fs.readdirSync(routesPath).forEach((file)=>{
 })
 app.use(globalErrorMiddleware.globalNotFoundHandler)
 
-try {
-    sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-}
 
 let server = http.createServer(app)
 server.listen(appConfig.port,()=>{
