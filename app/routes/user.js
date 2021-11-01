@@ -17,5 +17,7 @@ module.exports.setRouter = (app)=>{
     app.post(baseUrl + "/login",userController.loginFunction)
     
     app.post(baseUrl + "/uploadcsv",userController.uploadFile)
+    
+    app.get(baseUrl + "/all",userController.getAllUser)
 }
 

@@ -267,12 +267,27 @@ let uploadFile = async (req,res)=>{
           });
         }
     }
+    getAllUser = (req,res)=>{
+        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200') 
+        UserModel.findAll()
+        .then(data => {
+          res.send(data);
+        })
+        .catch(err => {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while retrieving Records."
+          });
+        });
+    
 
+    }
 module.exports ={
     signUpFunction: signUpFunction,
     loginFunction: loginFunction,
     getParticularUser: getParticularUser,
     editUser: editUser,
-    uploadFile: uploadFile
+    uploadFile: uploadFile,
+    getAllUser: getAllUser
     // uploadAvatar: uploadAvatar
 }
